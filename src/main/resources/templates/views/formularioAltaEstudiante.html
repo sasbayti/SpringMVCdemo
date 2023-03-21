@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario de Alta de Estudiante</h1>
+
+    <form th:object="${estudiante}">
+
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" >
+
+    </form>
+
+    <!-- ¿Como funciona un formuulario HTML en general?  -->
+    <!-- <form action="#" method="post">
+        <input name="nombre" placeholder="Escriba su nombre, porfa!!!" type="text">
+
+        <label for="fechaNacimiento">Fecha de Nacimiento: </label>
+        <input name="fechaNacimiento" type="date" id="fechaNacimiento">
+
+    
+        <input type="submit" value="Enviar">
+    </form> -->
+</body>
+</html>
