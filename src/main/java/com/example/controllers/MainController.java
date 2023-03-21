@@ -51,10 +51,4 @@ public class MainController {
 
         return "views/formularioAltaEstudiante";
     }
-
-    @PostMapping("/altaEstudiante")
-    /** Metodo que recibe los dayos procedente de los controles del formulario */
-    public void altaEstudiante(){
-
-    }
 }
