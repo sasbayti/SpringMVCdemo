@@ -9,7 +9,7 @@
 <body>
     <h1>Formulario de Alta de Estudiante</h1>
 
-    <form th:object="${estudiante}">
+    <form th:object="${estudiante}" th:action="@{/altaEstudiante}" method="post">
 
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required> <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
