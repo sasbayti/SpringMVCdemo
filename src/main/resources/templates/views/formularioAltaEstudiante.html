@@ -12,8 +12,42 @@
     <form th:object="${estudiante}">
 
         <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" >
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required> <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
+        
+        <label for="primerApellido">Primer Apellido: </label>
+        <input type="text" name="primerApellido" id="primerApellido" th:field="*{primerApellido}" required>
+       
+        <label for="segundoApellido">Segundo Apellido: </label>
+        <input type="text" name="segundoApellido" id="segundoApellido" th:field="*{segundoApellido}" required>
+        
+        <label for="fechaAlta"> Fecha Alta: </label>
+        <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>
+       
+        <label for="fechaNacimiento"> Fecha Nacimiento: </label>
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
 
+        <fieldset>
+            <legend>Genero</legend>
+            <label for="hombre">Hombre</label>
+            <input type="radio" id="hombre" name="genero" value="HOMBRE" th:field="*{genero}" required>
+           
+            <label for="mujer">Mujer</label>
+            <input type="radio" id="mujer" name="genero" value="MUJER" th:field="*{genero}" required>
+            
+            <label for="otro">Otro</label>
+            <input type="radio" id="otro" name="genero" value="OTRO" th:field="*{genero}" required>
+        </fieldset>
+        
+        <label for="beca">Beca recibida</label>
+        <input type="text" id="beca" name="beca" th:field="*{beca}">
+       
+        <label for="idFacultad">Facultad: </label>
+        <select name="facultad" id="idFacultad" required>
+            <option></option>
+            <option value="1">Informatica</option>
+            <option value="2">Biologia</option>
+        </select>
+        <input type="submit" value="Alta">
     </form>
 
     <!-- ¿Como funciona un formuulario HTML en general?  -->
