@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.cache.CacheProperties.Redis;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,16 +49,17 @@ public class MainController {
         return "views/formularioAltaEstudiante";
     }
 
-    @PostMapping("/altaEstudiante")
-    /** Metodo que recibe los dayos procedente de los controles del formulario */
-    public RedirectView altaEstudiante(){ 
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/listar");
-    return redirectView;
-    }
-    // @PostMapping("/altaEstudiante")
-    // /** Metodo que recibe los dayos procedente de los controles del formulario
-    // public String altaEstudiante(){  /* va a devolver una vista si todo ha ido correctaemnte */
-    // return "redirect:/listar"; */
+   // @PostMapping("/altaEstudiante")
+    // /** Metodo que recibe los dayos procedente de los controles del formulario */
+    // public RedirectView altaEstudiante(){ 
+    //     RedirectView redirectView = new RedirectView();
+    //     redirectView.setUrl("/listar");
+    // return redirectView;
     // }
+    @PostMapping("/altaEstudiante")
+    /** Metodo que recibe los dayos procedente de los controles del formulario*/
+    public String altaEstudiante(@ModelAttribute Estudiante estudiante){  /* va a devolver una vista si todo ha ido correctaemnte */
+     estudianteService.save(estudiante);
+    return "redirect:/listar"; 
+    }
 }
