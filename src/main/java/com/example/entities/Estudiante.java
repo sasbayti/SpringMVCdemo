@@ -39,7 +39,7 @@ public class Estudiante implements Serializable {
     private int id;
 
     @NotNull (message = "El nombre no puede ser null")
-    @Size( max = 25, min = 4)
+    @Size( max = 25, min = 3)
     private String nombre;
     private String primerApellido;
     private String segundoApellido;

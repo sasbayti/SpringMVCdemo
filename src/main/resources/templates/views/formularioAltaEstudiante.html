@@ -10,22 +10,31 @@
     <h1>Formulario de Alta de Estudiante</h1>
 
     <form th:object="${estudiante}" th:action="@{/altaEstudiante}" method="post">
-
+        <div class="mb-3">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required> <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
-        
+        </div>
+
+        <div class="mb-3"> 
         <label for="primerApellido">Primer Apellido: </label>
         <input type="text" name="primerApellido" id="primerApellido" th:field="*{primerApellido}" required>
-       
+        </div>
+
+        <div class="mb-3">
         <label for="segundoApellido">Segundo Apellido: </label>
         <input type="text" name="segundoApellido" id="segundoApellido" th:field="*{segundoApellido}" required>
-        
+         </div>
+
+         <div class="mb-3">
         <label for="fechaAlta"> Fecha Alta: </label>
         <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>
-       
+         </div>
+
+         <div class="mb-3">
         <label for="fechaNacimiento"> Fecha Nacimiento: </label>
         <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
-
+        </div>
+        
         <fieldset>
             <legend>Genero</legend>
             <label for="hombre">Hombre</label>
@@ -47,8 +56,10 @@
             <option value="1">Informatica</option>
             <option value="2">Biologia</option>
         </select>
+        <label for="numerosTelefonos">Telefono(s): </label>
+        <input type="text" name="numerosTelefonos" id="numerosTelefonos" 
+        placeholder="Uno o varios separados por punto y coma">
 
-        
         <input type="submit" value="Alta">
     </form>
 
