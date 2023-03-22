@@ -7,9 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Formulario de Alta de Estudiante</h1>
+    <h1>Formulario de Alta/Modificación de Estudiante</h1> <!-- El id esta vacio cuando es alta y 1 cuando modifica -->
 
-    <form th:object="${estudiante}" th:action="@{/altaEstudiante}" method="post">
+    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post">
+        <!-- Guardar en un input oculto el id del estudiante -->
+        <input type="hidden" name="id" value="${estudiante.id} != 0  ${estudiante.id} : 0">
+
         <div class="mb-3">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required> <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
@@ -34,7 +37,7 @@
         <label for="fechaNacimiento"> Fecha Nacimiento: </label>
         <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
         </div>
-        
+
         <fieldset>
             <legend>Genero</legend>
             <label for="hombre">Hombre</label>
