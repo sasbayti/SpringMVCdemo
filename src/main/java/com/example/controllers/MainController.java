@@ -126,11 +126,14 @@ public class MainController {
         List<Telefono> telefonosDelEstudiante = todostelefonos.stream().filter(t -> t.getEstudiante()
                 .getId() == idEstudiante).collect(Collectors.toList());
     
-     //   List<Facultad> facultades = facultadService.findAll();
+        String numerosDeTelefono = telefonosDelEstudiante.stream().map(t ->t.getNumero()).collect(Collectors.joining(";")); 
+        // NO funciona metodo por referencia pero no lo vamos a ver
+
+        List<Facultad> facultades = facultadService.findAll();
 
         model.addAttribute("estudiante", estudiante); // para que te traiga el formulario con los datos llenos
-        model.addAttribute("telefonos", telefonosDelEstudiante);
-     //   model.addAttribute("facultades", facultades);
+        model.addAttribute("telefonos", numerosDeTelefono);
+        model.addAttribute("facultades", facultades);
 
         return "views/formularioAltaEstudiante"; // quiero que vuelva a la vista
     }
