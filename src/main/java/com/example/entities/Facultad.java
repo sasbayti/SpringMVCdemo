@@ -30,7 +30,7 @@ public class Facultad implements Serializable {
     private int id;
     private String nombre;
 
-    @OneToMany(fetch = FetchType.EAGER, 
+    @OneToMany(fetch = FetchType.LAZY, 
        cascade = CascadeType.PERSIST, mappedBy = "facultad")
     private List<Estudiante> estudiantes;
 }

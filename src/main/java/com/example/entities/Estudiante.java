@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,20 +41,24 @@ public class Estudiante implements Serializable {
     private int id;
 
     @NotNull (message = "El nombre no puede ser null")
-    @Size( max = 25, min = 3)
+   // @Size( max = 25, min = 3)
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
+    
+    @DateTimeFormat(pattern ="yyyy-MM-dd" )
     private LocalDate fechaAlta;
+
+    @DateTimeFormat(pattern ="yyyy-MM-dd" )
     private LocalDate fechaNacimiento;
     private Genero genero;
     private double beca;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST) 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) 
     @JoinColumn(name = "idFacultad")
     private Facultad facultad;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "estudiante")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "estudiante")
     private List<Telefono> telefonos;
 
     public enum Genero {

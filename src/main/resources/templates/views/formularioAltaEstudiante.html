@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Formulario de Alta/Modificación de Estudiante</h1> <!-- El id esta vacio cuando es alta y 1 cuando modifica -->
 
@@ -14,57 +16,60 @@
         <input type="hidden" name="id" th:value="${estudiante.id}">
 
         <div class="mb-3">
-        <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required> <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
-        </div>
-
-        <div class="mb-3"> 
-        <label for="primerApellido">Primer Apellido: </label>
-        <input type="text" name="primerApellido" id="primerApellido" th:field="*{primerApellido}" required>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required>
+            <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
         </div>
 
         <div class="mb-3">
-        <label for="segundoApellido">Segundo Apellido: </label>
-        <input type="text" name="segundoApellido" id="segundoApellido" th:field="*{segundoApellido}" required>
-         </div>
+            <label for="primerApellido">Primer Apellido: </label>
+            <input type="text" name="primerApellido" id="primerApellido" th:field="*{primerApellido}" required>
+        </div>
 
-         <div class="mb-3">
-        <label for="fechaAlta"> Fecha Alta: </label>
-        <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>
-         </div>
+        <div class="mb-3">
+            <label for="segundoApellido">Segundo Apellido: </label>
+            <input type="text" name="segundoApellido" id="segundoApellido" th:field="*{segundoApellido}" required>
+        </div>
 
-         <div class="mb-3">
-        <label for="fechaNacimiento"> Fecha Nacimiento: </label>
-        <input type="date" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
+        <div class="mb-3">
+            <label for="fechaAlta"> Fecha Alta: </label>
+            <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="fechaNacimiento"> Fecha Nacimiento: </label>
+            <input type="date"  name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
         </div>
 
         <fieldset>
             <legend>Genero</legend>
             <label for="hombre">Hombre</label>
             <input type="radio" id="hombre" name="genero" value="HOMBRE" th:field="*{genero}" required>
-           
+
             <label for="mujer">Mujer</label>
             <input type="radio" id="mujer" name="genero" value="MUJER" th:field="*{genero}" required>
-            
+
             <label for="otro">Otro</label>
             <input type="radio" id="otro" name="genero" value="OTRO" th:field="*{genero}" required>
         </fieldset>
-        
+
         <label for="beca">Beca recibida</label>
         <input type="text" id="beca" name="beca" th:field="*{beca}">
-       
+
         <label for="idFacultad">Facultad:</label>
 
         <select class="form-select" aria-label="Default select example" name="facultad" id="idFacultad">
-        
-        <option selected> Abrir menú desplegable</option>
-        <option th:each="facultad : ${facultades}" th:value="${facultad.id}"
-        th:text="${facultad.nombre}"> </option>
+            <option></option>
+
+            <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}"
+                th:selected="${estudiante.facultad != null and estudiante.facultad.id == facultad.id }"> </option>
+            <!-- selected dice la que esta marcada -->
 
         </select>
+
         <label for="numerosTelefonos">Telefono(s): </label>
-        <input type="text" name="numerosTelefonos" id="numerosTelefonos" 
-        placeholder="Uno o varios separados por punto y coma">
+        <input type="text" name="numerosTelefonos" id="numerosTelefonos"
+            placeholder="Uno o varios separados por punto y coma" th:value="${telefonos}">
 
         <input type="submit" value="Alta">
     </form>
@@ -80,4 +85,5 @@
         <input type="submit" value="Enviar">
     </form> -->
 </body>
+
 </html>

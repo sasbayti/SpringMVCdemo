@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,7 +85,9 @@ public class MainController {
                                                                                    */
 
         LOG.info("Los telefonos recibidos son: " + telefonosRecibidos);
-
+        
+        estudianteService.save(estudiante);
+        
         List<String> listadoNumerosTelefonos = null; // Como ha sido declarada aqui, ya no necesito hacerlo despues
 
         if (telefonosRecibidos != null) {
@@ -94,10 +97,13 @@ public class MainController {
                                                                      // telefonos
 
         }
-
-        estudianteService.save(estudiante);
-
+        // Borrar todos los telefonos que tenga el estudiante, si hay que insertar nuevos
+        if(telefonosRecibidos != null){
+            String[] arrayTelefonos = telefonosRecibidos.split(";");
+            listadoNumerosTelefonos = Arrays.asList(arrayTelefonos);
+        }
         if (listadoNumerosTelefonos != null) {
+           telefonoService.deleteByEstudiante(estudiante);
             listadoNumerosTelefonos.stream().forEach(n -> { // n hace referencia al numero que va pasando, uno a uno
                 Telefono telefonoObject = Telefono.builder().numero(n).estudiante(estudiante)
                         .build();
@@ -136,5 +142,12 @@ public class MainController {
         model.addAttribute("facultades", facultades);
 
         return "views/formularioAltaEstudiante"; // quiero que vuelva a la vista
+        
     }
+    @GetMapping("/borrar/{id}")
+        public String borrarEstudiante(@PathVariable(name = "id") int idEstudiante){
+           estudianteService.delete(estudianteService.findById(idEstudiante));
+            return "redirect:/listar";
+        
+        }
 }
