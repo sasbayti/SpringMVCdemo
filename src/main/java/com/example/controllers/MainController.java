@@ -77,7 +77,7 @@ public class MainController {
     // return redirectView;
     // }
     @PostMapping("/altaModificacionEstudiante")
-    /** Metodo que recibe los dayos procedente de los controles del formulario */
+    /** Metodo que recibe los datos procedente de los controles del formulario */
     public String altaEstudiante(@ModelAttribute Estudiante estudiante,
             @RequestParam(name = "numerosTelefonos") String telefonosRecibidos) { /**
                                                                                    * va a devolver una vista si todo ha
@@ -122,7 +122,7 @@ public class MainController {
     @GetMapping("/frmActualizar/{id}")
     public String frmActualizaEstudiante(@PathVariable(name = "id") int idEstudiante, Model model) {
         // Es una variable en la ruta (idEstudiante) para recoger el id (temporalmente)
-        // MOdel model le tenqo que pasarle el modelo, estudiante, telefonos faucltad
+        // Model model le tenqo que pasarle el modelo, estudiante, telefonos facultad
         // para yo poder modificarlo
         // La validacion de si tengo estudiante o no seria una buena practica pero no lo
         // vamos a hacer para ir rapido
@@ -149,5 +149,22 @@ public class MainController {
            estudianteService.delete(estudianteService.findById(idEstudiante));
             return "redirect:/listar";
         
+        }
+
+    // Metodo que muestra los detalles
+    @GetMapping("/detalles/{id}")
+        public String detallesEstudiante(@PathVariable(name = "id") int idEstudiante, Model model){
+          
+            Estudiante estudiante = estudianteService.findById(idEstudiante);
+        List<Telefono> todostelefonos = telefonoService.findByEstudiante(estudiante);
+
+        List<String> telefonosDelEstudiante = todostelefonos.stream()
+        .map(t -> t.getNumero()).toList();
+        
+            model.addAttribute("estudiante", estudiante); // para que te traiga el formulario con los datos llenos
+            model.addAttribute("telefonos", telefonosDelEstudiante);
+            // Lo que va dentro de "" es el nombre que tengo dentro del view
+         
+            return "views/detallesEstudiante";
         }
 }

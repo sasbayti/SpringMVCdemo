@@ -13,7 +13,7 @@ public interface TelefonoDao extends JpaRepository<Telefono, Integer> {
     
     // @Query(value = "delete from telefonos where estudiante_id = :idEstudiante", nativeQuery = true)
     //  long deleteByIdEstudiante(@Param("idEstudiante") Integer idEstudiante);
-    long deleteByEstudiante(Estudiante estudiante);
+     long deleteByEstudiante(Estudiante estudiante);
 
-    // List<Telefono> findByEstudiante(Estudiante estudiante);
+     List<Telefono> findByEstudiante(Estudiante estudiante);
 }
