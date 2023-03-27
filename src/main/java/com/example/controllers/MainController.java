@@ -1,5 +1,8 @@
 package com.example.controllers;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entities.Estudiante;
@@ -79,13 +83,34 @@ public class MainController {
     @PostMapping("/altaModificacionEstudiante")
     /** Metodo que recibe los datos procedente de los controles del formulario */
     public String altaEstudiante(@ModelAttribute Estudiante estudiante,
-            @RequestParam(name = "numerosTelefonos") String telefonosRecibidos) { /**
+            @RequestParam(name = "numerosTelefonos") String telefonosRecibidos,
+            @RequestParam(name = "imagen") MultipartFile imagen) { /**
                                                                                    * va a devolver una vista si todo ha
                                                                                    * ido correctamente
                                                                                    */
 
         LOG.info("Los telefonos recibidos son: " + telefonosRecibidos);
-        
+        if(!imagen.isEmpty()){
+            try {
+                // Nececito a ruta relativa de donde voy a almacenar el archivo de imagen.
+                Path rutaRelativa = Paths.get("src/main/resources/static/images");
+                //Necesitamos la ruta absoluta
+                String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();
+
+                byte[] imagenEnBytes = imagen.getBytes();
+                //Guardamos la imagen en el file system
+
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "/" + imagen.getOriginalFilename());
+                Files.write(rutaCompleta, imagenEnBytes);
+
+                // Asociar la imagen con el objeto estudiante que se va a guardar
+
+                estudiante.setFoto(imagen.getOriginalFilename()); // AQui tengo el nombre original 
+            } catch (Exception e) {
+                
+            }
+
+        }
         estudianteService.save(estudiante);
         
         List<String> listadoNumerosTelefonos = null; // Como ha sido declarada aqui, ya no necesito hacerlo despues

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -57,6 +58,7 @@ public class Estudiante implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) 
     @JoinColumn(name = "idFacultad")
     private Facultad facultad;
+    private String foto;
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "estudiante")
     private List<Telefono> telefonos;

@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<fieldset>
 <body>
     <h1>Formulario de Alta/Modificación de Estudiante</h1> <!-- El id esta vacio cuando es alta y 1 cuando modifica -->
 
-    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post">
+    <form th:object="${estudiante}" th:action="@{/altaModificacionEstudiante}" method="post"
+    enctype="multipart/form-data">
         <!-- Guardar en un input oculto el id del estudiante -->
         <input type="hidden" name="id" th:value="${estudiante.id}">
 
@@ -20,22 +21,32 @@
             <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required>
             <!-- etiqueta de tipo input, $ evalua,* lo relaciona -->
         </div>
+<p>
 
+</p>
         <div class="mb-3">
             <label for="primerApellido">Primer Apellido: </label>
             <input type="text" name="primerApellido" id="primerApellido" th:field="*{primerApellido}" required>
         </div>
+        <p>
+
+        </p>
 
         <div class="mb-3">
             <label for="segundoApellido">Segundo Apellido: </label>
             <input type="text" name="segundoApellido" id="segundoApellido" th:field="*{segundoApellido}" required>
         </div>
+        <p>
+
+        </p>
 
         <div class="mb-3">
             <label for="fechaAlta"> Fecha Alta: </label>
             <input type="date" name="fechaAlta" id="fechaAlta" th:field="*{fechaAlta}" required>
         </div>
+<p>
 
+</p>
         <div class="mb-3">
             <label for="fechaNacimiento"> Fecha Nacimiento: </label>
             <input type="date"  name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}">
@@ -52,9 +63,14 @@
             <label for="otro">Otro</label>
             <input type="radio" id="otro" name="genero" value="OTRO" th:field="*{genero}" required>
         </fieldset>
+<p>
 
+</p>
         <label for="beca">Beca recibida</label>
         <input type="text" id="beca" name="beca" th:field="*{beca}">
+        <p>
+
+        </p>
 
         <label for="idFacultad">Facultad:</label>
 
@@ -64,14 +80,23 @@
             <option th:each="facultad : ${facultades}" th:value="${facultad.id}" th:text="${facultad.nombre}"
                 th:selected="${estudiante.facultad != null and estudiante.facultad.id == facultad.id }"> </option>
             <!-- selected dice la que esta marcada -->
+<p>
 
+</p>
         </select>
 
         <label for="numerosTelefonos">Telefono(s): </label>
         <input type="text" name="numerosTelefonos" id="numerosTelefonos"
             placeholder="Uno o varios separados por punto y coma" th:value="${telefonos}">
 
-        <input type="submit" value="Alta">
+            <label for="imagen">Foto: </label>
+            <input type="file" id="imagen" name="imagen">
+            <p>
+
+            </p>
+
+        <input type="submit" value="Alta" style="background-color: blue;">
+    </fieldset>
     </form>
 
     <!-- ¿Como funciona un formulario HTML en general?  -->
