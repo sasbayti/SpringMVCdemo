@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1 th:text="'Detalles del Estudiante' +' ' + ${estudiante.nombre} +' ' + ${estudiante.primerApellido}"></h1>
-    <img alt="Imagen de la galaxia" th:src="@{/images/}+${estudiante.foto}" >
+    <img alt="Imagen del estudiante" th:src="@{'/recursos/images/'}+${estudiante.foto}" >
     <div>
         Telefonos: 
         <ul>

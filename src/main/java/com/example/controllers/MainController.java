@@ -93,10 +93,11 @@ public class MainController {
         if(!imagen.isEmpty()){
             try {
                 // Nececito a ruta relativa de donde voy a almacenar el archivo de imagen.
-                Path rutaRelativa = Paths.get("src/main/resources/static/images");
-                //Necesitamos la ruta absoluta
-                String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();
+              //  Path rutaRelativa = Paths.get("src/main/resources/static/images");
+                //Necesitamos la ruta absoluta, los comentamos porque 
+              //  String rutaAbsoluta = rutaRelativa.toFile().getAbsolutePath();
 
+              String rutaAbsoluta ="/home//salma/recursos/images";
                 byte[] imagenEnBytes = imagen.getBytes();
                 //Guardamos la imagen en el file system
 
